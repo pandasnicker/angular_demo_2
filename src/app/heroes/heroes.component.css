@@ -2,3 +2,11 @@
     align-content : center;
     color:red;
   }
+
+table, td, th{
+  padding: 10px 5px 10px 5px;
+  margin: 20px; 
+  border:1px solid black; 
+  border-collapse: collapse;
+  text-align: center;
+}

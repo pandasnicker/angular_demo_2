@@ -1,7 +1,51 @@
-<div class="red-text">
-<p>heroes works!</p>
-<h1>{{hero.name}}</h1>
 
-<div><span>ID:  </span> {{hero.id}}</div>
-<div><span>Name:</span> {{hero.name | uppercase}}</div>
+<div>
+    <employee-count [all]="getTotalEmp()"
+             [male]="getMaleEmp()"
+             [female]="getFemaleEmp()"
+             (radioChange)="onEmpCntRadBtnChanged($event)"> This is a child component</employee-count>
+    <br/>
+    <span>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee Number</th>
+                    <th>Employee Full Name</th>
+                    <th>Gender</th>
+                    <th>City of Residence</th>
+                    <th>Age of Employee</th>
+                    <th>Salary</th>
+                    <th>Index</th>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>isEven</th>
+                    <th>isOdd</th>
+                </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let emp of myEmp; trackBy: trackbyid; let ind=index; 
+                    let isfirst=first; let isLast=last; let isEven=even; let isOdd=odd;">
+                <tr 
+                    *ngIf="selectedRadiobtn == 'All' || selectedRadiobtn == emp.gender">
+                    <td>{{emp.eno}}</td>
+                    <td style="text-align: justify; font-style: italic;">{{emp.eFname + " " + emp.eLname | genderPipe:emp.gender | uppercase}}</td>
+                    <td>{{emp.gender}}</td>
+                    <td>{{emp.City | uppercase}}</td>
+                    <td>{{emp.Age}}</td>
+                    <td>{{emp.salary | currency:'CAD':'symbol'}}</td>
+                    <td>{{ind}}</td>
+                    <td>{{isfirst}}</td>
+                    <td>{{isLast}}</td>
+                    <td>{{isEven}}</td>
+                    <td>{{isOdd}}</td>
+                </tr>
+            </ng-container>
+
+            <tr *ngIf="!myEmp || myEmp.length == 0">
+                <td colspan="4"> No Employees to display</td>
+            </tr>
+        </tbody>
+        </table>
+    </span>
+    <!-- <div><button (click) = "refresh()">Click to Refresh</button></div> -->
 </div>

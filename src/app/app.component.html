@@ -1,5 +1,13 @@
 <h1> {{title}} </h1>
-<h2>{{num}} heroes in the database</h2>
 
+<button id='bttn' [disabled]="isEnabled" on-click="onClick()">
+    Click Me
+</button>
+<br />
+<input [(ngModel)]='name' />
+<br />
+<p>You've Entered: {{name}}</p>
 
-<app-heroes></app-heroes>
+<hr><hr>
+
+<app-heroes> Heroes module starts here </app-heroes>
